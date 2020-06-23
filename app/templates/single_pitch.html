@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{pitch.title}}</h5>
+                            <p class="card-text">{{pitch.pitch}}</p>
+                            <a href="{{url_for('main.delete', pitch_id=pitch.id)}}" class="btn btn-danger">Delete Pitch</a>
+                            <a href="{{url_for('main.update_pitch', pitch_id=pitch.id)}}" class="btn btn-success">Update Pitch</a>
+                        </div>
+                    </div>
+
+                    <h1>Post comment</h1>
+                    {{wtf.quick_form(form)}}
+                </div>
+            </div>
+            <div class="col">
+                <h1>Comments</h1>
+                
+                {% for comment in comments %}
+                    <p>{{comment.comment}}</p>
+                    <small>{{comment.date_posted}}</small>
+                {% endfor %}
+                    
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    
